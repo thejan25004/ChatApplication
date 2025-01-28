@@ -1,0 +1,93 @@
+CT
+    Reservations.reservationId,
+    Reservations.reservationDate,
+    Reservations.returnDate,
+    customer.customerld,
+    customer.name,
+    Vehicles.vehicleId,
+    Vehicles.modelName,
+    Vehicles.bookingCost,
+    Vehicles.numberPlate,
+    Vehicles.currentMilage ,
+    Vehicles.first_100Km_1km_charge,
+    Vehicles.after_100Km_1km_charge
+FROM
+    Reservations
+    JOIN customer ON Reservations.customerld = customer.customerId
+    JOIN Vehicles ON ReservationDetails.vehicleId = Vehicles.vehicleId;
+
+
+
+
+SELECT
+    r.reservationId,
+    r.reservationDate,
+    r.returnDate,
+    c.name AS customerName,
+    c.bailVehicleNm,
+    v.vehicleId,
+    v.currentMilage,
+    v.bookingCost,
+    v.numberPlate
+FROM
+    Reservations r
+    JOIN customer c ON r.customerld = c.customerld
+    JOIN ReservationDetails rd ON r.reservationId = rd.reservationId
+    JOIN Vehicles v ON rd.vehicleId = v.vehicleId;
+
+
+
+
+this is my database . Give a join query to get all the columns of the reservation table and the vehicleId, currentMilage, Booking Cost, NumberPlate columns of the Vehicle table and the customerId, name, bailvehicleNm columns of the Customer table.
+
+
+
+SELECT
+    r.returnId,
+    r.afterRideMilage,
+    r.lateReturnCharge,
+    v.vehicleId,
+    v.numberPlate,
+    v.modelName,
+    c.customerId,
+    c.name,
+    c.bailVehicleNm,
+    res.returnDate
+FROM
+    Returns r
+    JOIN ReservationDetails rd ON r.reservationId = rd.reservationId
+    JOIN Vehicles v ON rd.vehicleId = v.vehicleId
+    JOIN Reservations res ON r.reservationId = res.reservationId
+    JOIN customer c ON res.customerId = c.customerId;
+
+
+
+
+
+
+SELECT
+    r.returnId,
+    r.afterRideMilage,
+    r.lateReturnCharge,
+    v.vehicleId,
+    v.numberPlate,
+    v.modelName,
+    c.customerld AS customerId,
+    c.name,
+    c.bailVehicleNm,
+    res.reservationId,
+    res.returnDate
+FROM
+    Returns r
+    JOIN ReservationDetails rd ON r.reservationId = rd.reservationId
+    JOIN Vehicles v ON rd.vehicleId = v.vehicleId
+    JOIN Reservations res ON r.reservationId = res.reservationId
+    JOIN customer c ON res.customerld = c.customerld;
+
+
+
+
+
+
+
+
